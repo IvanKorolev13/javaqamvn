@@ -1,0 +1,12 @@
+"'registered user,bonus under limit'",1006,true,30
+"'registered user, bonus over limit'",100000060,true,500
+"'unregistered user, bonus under limit'",1000,false,10
+"'unregistered user, bonus over limit'",1000000,false,500
+"'registered user, bonus under border limit'",16700,true,500
+"'registered user, bonus over border limit'",16666,true,499
+"'registered user, bonus exect border limit'",16667,true,500
+"'unregistered user, bonus under border limit'",50100,false,500
+"'unregistered user, bonus over border limit'",49999,false,499
+"'unregistered user, bonus exect border limit'",50000,false,500
+"'registered user, non amount'",0,true,0
+"'unregistered user,non amount'", 0,false,0

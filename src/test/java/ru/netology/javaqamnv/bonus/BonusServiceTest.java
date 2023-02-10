@@ -1,7 +1,46 @@
+package ru.netology.javaqamnv.bonus;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BonusServiceTest {
-    @org.junit.jupiter.api.Test
+    @ParameterizedTest
+    //Не понятно что за переменная массива value, в задании и в лекции нигде не рассказывали как работать с этим кодом
+    //В задании сказано, что нужно взять проект с калькултором бонусов, поискал в лекциях,
+    //заданиях и листингах кода, но названий как в задании нигде нет (либо я не до конца искал
+    //Если я правильно понял, то первое значение в массиве value- это название автотеста,
+    //но как это название использовать- нет инфо. Искал в нете так же, но пока не успешно (может мало искал).
+    /*  @CsvSource(
+      value={
+          "'registered user, bonus under limit',100060,true,30",
+          "'registered user, bonus over limit',100000060,true,500",
+          "'unregistered user, bonus under limit',1000,false,10",
+          "'unregistered user, bonus over limit',1000000,false,500",
+          "'registered user, bonus under border limit',16700,true,500",
+          "'registered user, bonus over border limit',16666,true,499",
+          "'registered user, bonus exect border limit',16667,true,500",
+          "'unregistered user, bonus under border limit',50100,false,500",
+          "'unregistered user, bonus over border limit',49999,false,499",
+          "'unregistered user, bonus exect border limit',50000,false,500",
+          "'registered user, non amount',0,true,0",
+          "'unregistered user, non amount',0,false,0"
+      }
+     )*/
+    @CsvFileSource(resources = "/data.csv")
+        //в лекциях везде указывается параметр files = "_", в задании написано resources = "_" (что это означает?)
+        // ниже предположил, что т.к. в файле 4 параметра,то тест должен так же принимать 4 параметра (но как его выводить- не понятно
+    void calculateBonus(String testName, long amount, boolean registered, long expected) {
+        BonusService service = new BonusService();
+        long actual = service.calculate(amount, registered);
+        assertEquals(expected, actual);
+    }
+
+    //закомментировал старый код
+    /*@Test
     void shouldCalculateForRegisteredAndUnderLimit() {
         BonusService service = new BonusService();
 
@@ -17,7 +56,7 @@ public class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldCalculateForRegisteredAndOverLimit() {
         BonusService service = new BonusService();
 
@@ -34,7 +73,7 @@ public class BonusServiceTest {
     }
 
     //новые тесты
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldCalculateNoRegisteredAndUnderLimit() {
         BonusService service = new BonusService();
 
@@ -50,7 +89,7 @@ public class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldCalculateNoRegisteredAndOverLimit() {
         BonusService service = new BonusService();
 
@@ -66,7 +105,7 @@ public class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldCalculateForRegisteredAndUnderBorderLimit() {
         BonusService service = new BonusService();
 
@@ -82,7 +121,7 @@ public class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldCalculateForRegisteredAndOverBorderLimit() {
         BonusService service = new BonusService();
 
@@ -98,7 +137,7 @@ public class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldCalculateForRegisteredAndBorderLimit() {
         BonusService service = new BonusService();
 
@@ -114,7 +153,7 @@ public class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldCalculateNoRegisteredAndUnderBorderLimit() {
         BonusService service = new BonusService();
 
@@ -130,7 +169,7 @@ public class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldCalculateNoRegisteredAndOverBorderLimit() {
         BonusService service = new BonusService();
 
@@ -146,7 +185,7 @@ public class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldCalculateNoRegisteredAndBorderLimit() {
         BonusService service = new BonusService();
 
@@ -162,7 +201,7 @@ public class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldCalculateForRegisteredAndAmountIsNull() {
         BonusService service = new BonusService();
 
@@ -178,7 +217,7 @@ public class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldCalculateNoRegisteredAndAmountIsNull() {
         BonusService service = new BonusService();
 
@@ -193,5 +232,5 @@ public class BonusServiceTest {
         // производим проверку (сравниваем ожидаемый и фактический):
         assertEquals(expected, actual);
     }
-
+*/
 }
